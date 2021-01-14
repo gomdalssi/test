@@ -73,12 +73,15 @@
       </div>
     </div>
     <div class="btn-upload-wrap">
-      <label class="btn-input-file" for="real-input">등록하기</label>
-      <input type="file" id="real-input" class="hidden-input-file" accept="image/*" rquired>
+      <label class="btn-input-file" for="camera">카메라 켜기</label>
+      <input type="file" id="camera" class="hidden-input-file" capture="camera" accept="image/*" rquired>      
+    </div>
+    <div class="btn-upload-wrap">
+      <label class="btn-input-file" for="real-input">앨범찾기</label>
+      <input type="file" id="real-input" class="hidden-input-file" accept="image/*" rquired>      
     </div>
   </div>  
-  <script>
-    var sel_file;
+  <script>    
     $('.hidden-input-file').on('change', uploadInputFile);
     
     
@@ -102,10 +105,12 @@
     //   }
     // }
 
-    function uploadInputFile(e){      
-      var files = e.target.files;
-      var filesArr = Array.prototype.slice.call(files);
-
+    function uploadInputFile(e){  
+      var sel_file;    
+      var files = e.target.files;   // {0:file, length:1}
+      var filesArr = Array.prototype.slice.call(files);   
+      console.log(files)
+      console.log(filesArr)
       filesArr.forEach(function(f){        
         if(!f.type.match("image/.*")) return;
 
